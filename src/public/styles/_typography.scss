@@ -12,17 +12,6 @@
     }
 }
 
-%f-a,
-.f-a,
-.f-link {
-    text-decoration: none;
-    color: color(black);
-    cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
 %hr {
     margin-bottom: 10px;
     border: 0;
