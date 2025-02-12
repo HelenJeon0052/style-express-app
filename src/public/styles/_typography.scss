@@ -1,0 +1,40 @@
+
+
+
+
+@mixin scoped-type() {
+    hr {
+        @extend %hr;
+    }
+
+    a {
+        @extend %f-a;
+    }
+}
+
+%f-a,
+.f-a,
+.f-link {
+    text-decoration: none;
+    color: color(black);
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+%hr {
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid base.$secondary-grey;
+}
+
+@function calculate-rem($px) {
+    @return calc($px / 16px) + rem;
+}
+
+@mixin inter($weight:500) {
+      font-family: "Inter", serif;
+      font-optical-sizing: auto;
+      font-weight: $weight;
+}

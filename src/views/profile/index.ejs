@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+
+
+<div class="width-adjust">
+    <div class="profile-container">
+        <div class="f-lg">
+            <p class="profile-container--subtitle"><%= user.username %>&nbsp;<span>님</span></p>
+            <span class="blend-effect-1">안녕하세요</span>
+            <div class="hr m-3"></div>
+        </div>
+    </div>
+        
+    
+    <div>
+        <div class="profile-container profile-container--margin">
+            <p class="profile-container--subtitle f-md">사용자 정보</p>
+            <ul>
+                <li class="profile-container--list">
+                    <p class="profile-container--title f-sm">사용자 이름</p>
+                    <p class="profile-container--subtitle f-nm">
+                        <%= user.firstName %>&nbsp;<%= user.lastName %>
+                    </p>
+                </li>
+                <li class="profile-container--list">
+                    <p class="profile-container--title f-sm">사용자 계정</p>
+                    <p class="profile-container--subtitle f-nm">
+                        <%= user.email %>
+                    </p>
+                </li>
+                <li  class="profile-container--list">
+                    <p class="profile-container--title f-sm">사용자 아이디</p>
+                    <p class="profile-container--subtitle f-nm">
+                        <%= user.username %>
+                    </p>
+                </li>
+                <li class="profile-container--list">
+                    <p class="profile-container--title f-sm">사용자 정보</p>
+                    <p class="profile-container--subtitle f-nm">
+                        <%= user.bio || 'no data' %>
+                    </p>
+                </li>
+            </ul>
+    
+            <% if (currentUser._id.toString()===user._id.toString()) { %>
+                <div class="">
+                    <form action="/profile/<%= user._id %>/edit">
+                        <button type="submit" class="profile-container--btn-wrapper profile-container--btn">
+                            정보 수정하기
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+    
+        </div>
+    
+<%- include('../partials/footer') %>

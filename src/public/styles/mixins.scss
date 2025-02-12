@@ -1,0 +1,73 @@
+/// @param {selector} $selectors...
+@mixin assert-selector($selectors...) {
+    $result: &;
+
+    //@include assert-selector('.state-a', '.state-b', '.state-c');
+    @each $selector in $selectors {
+        /*unquote(':not(#{$selector})'): This creates a :not() selector that excludes the current $selector from the $result*/
+        $result: selector-append($result, unquote(':not(#{$selector})'));
+    }
+
+    /*@at-root: This directive moves the generated CSS rule to the root level of the stylesheet, preventing it from being nested within any parent selectors*/
+    @at-root #{$result} {
+        /*! You must ensure the element matches one of these selectors: #{$selectors} */
+        outline: 2px solid red !important;
+    }
+}
+
+@mixin blend-effect($variant-color) {
+    background-image:linear-gradient(90deg, base.$secondary-green, base.$tertiary-green, $variant-color 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    background-size:250% 100%;
+    animation:gradient 8s ease-in-out infinite;
+    -webkit-aniamtion:gradient 8s ease-in-out infinite;
+    vertical-align:text-bottom;
+}
+
+$app:420px;
+$tablet:780px;
+$smallScreen:1020px;
+$desktop:1020px;
+$largeScreen:1920px;
+
+@mixin responsive($media) {
+    @if $media == app {
+        @media (min-width: $app) {
+            @content;
+        }
+    } @else if $media == tablet {
+        @media (min-width: $tablet) {
+            @content;
+        }
+    } @else if $media == desktop {
+        @media (min-width:$smallScreen) {
+            @content;
+        }
+    } @else if $media == mediumDesktop {
+        @media (max-width: $mediumDesktop) {
+            @content;
+        }
+    } @else if $media == largeScreen {
+        @media (max-width: $largeScreen) {
+            @content;
+        }
+    }
+}
+
+@mixin truncateText($overflow: ellipsis) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow;
+}
+
+@mixin button($theme:base.$primary-green) {
+    background-color:$theme;
+    color:base.$primary-grey;
+    border-radius:8px;
+    font-size:calculate-rem(20px);
+}
+
+/*.class { @include mixin  }*/
+/*.class { @include mixin($params:property)  }*/

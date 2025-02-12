@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+
+
+<div class="width-adjust height-fixed">
+    <div class="">
+        <div class="profile-container">
+            <p class="profile-container--subtitle f-lg my-2">edit profile</p>
+            <div class="profile-container--edit--wrapper">
+                <p class="profile-container--edit">
+                    <img src="/images/icon-info.png" alt="icon info" class="icon-size">
+                    <span class="profile-container--title f-sm">이메일은 수정할 수 없습니다.</span>
+                </p>
+            </div>
+        </div>
+        <div class="profile-container--input-wrapper">
+            <form action="/profile/<%= currentUser._id %>?_method=PUT" method="POST">
+                <div class="input-flex mb-3">
+                    <label for="first-name" class="f-sm mb-2">First Name</label>
+                    <input type="text" name="firstName" id="fist-name" class="input--box" value="<%= users.firstName %>" required/>
+                </div>
+    
+                <div class="input-flex mb-3">
+                    <label for="last-name" class="f-sm mb-2">Last Name</label>
+                    <input type="text" name="lastName" id="last-name" class="input--box" value="<%= users.lastName %>" required/>
+                </div>
+    
+                <div class="input-flex mb-3">
+                    <label for="bio" class="f-sm mb-2">bio</label>
+                    <input type="text" name="bio" id="bio" class="input--box" value="<%= users.bio %>"/>
+                </div>
+    
+                <button type="submit" class="profile-container--btn-wrapper profile-container--btn mt-3 mb-3">수정하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../partials/footer') %>

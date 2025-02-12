@@ -1,0 +1,2 @@
+/*.class { @include mixin  }*/
+/*.class { @include mixin($params:property)  }*/

@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<div class="width-adjust">
+    <div class="post-container--wrapper--layout">
+        <div class="post-container--title">
+            <h3 class="f-lg post-container--bg"><span class="highlight"><%= currentUser.username %></span>님의</h3>
+            <h3 class="f-lg">생각을 남겨주세요</h3>
+        </div>
+        <div class="post-container--create">
+            <div class="post-container--wrapper">
+                <%- include('../partials/post-modal') %>
+                <!--''-->
+            </div>
+            <div class="post-container">
+                <!--arrays-->
+                <!--'test:%= posts %'-->
+                <div>
+                    <p class="post-container--list--title f-md mb-5"><%= currentUser.username %>님의 포스트</p>
+                    <hr>
+                </div>
+                <% posts.forEach((post)=>{%>
+                    <!--mypost-->
+                    <%if(post.author.id.equals(currentUser._id) ||
+                    currentUser.followers.find(follower=>follower===post.author.id.toString())) {%>
+                    <div>
+                        <%- include('../partials/post-item', {post:post}) %>
+                    </div>
+                    <%}%>
+                <% })%>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <a href="/posts" alt="to top" class="to-top">
+        </a>    
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

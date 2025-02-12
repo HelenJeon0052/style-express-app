@@ -1,0 +1,55 @@
+<div class="">
+    <div class="post-container--wrapper--cont">
+        <div class="">
+            <div class="">
+                <h5 class="post-container--wrapper--title f-md mb-2">포스트 생성하기</h5>
+            </div>
+            <form method="POST" action="/posts" enctype="multipart/form-data">
+                <div class="">
+                    <div class="form-group">
+                        <textarea name="desc" id="desc" class="post-container--form--textarea" row="6" cols="50" placeholder="님의 생각을 적어주세요." required></textarea>
+                    </div>
+                    <div class="form-group mt-1">
+                        <input class="form-control post-container--form--inputs" type="file" name="">
+                    </div>
+                </div>
+                <div class="flex-wrapper">
+                    <button type="submit" class="post-container--form--btn btn-primary f-sm">생성하기</button>
+                    <button type="submit" class="post-container--form--btn btn-secondary f-sm">취소하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<div class="modal" id="idName" tabindex="-1" aria-labelledby="Modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Modal">Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+             'enctype:multipart/form-data : for multer' 
+            <form action="/posts" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea name="decs" id="descs" class="form-control" rows="4" placeholder="코멘트" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    end sessio
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    save data
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+-->

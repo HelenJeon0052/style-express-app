@@ -1,0 +1,123 @@
+<%- include('../partials/header') %>
+
+
+
+    <div class="width-adjust">
+        <div class="follower-container follower-container--margin">
+            <p class="follower-container--title">request follow</p>
+            <div>
+                <div>
+                    <% if (currentUser.followRequest.length===0) { %>
+                     
+                        <div class="follower-container--currentstatus text-center">
+                            no request
+                        </div>
+                    
+                        <% } else { %>
+                            <% currentUser.followRequest.forEach((followId)=>{ %>
+                                <% const follow=user_s.find(user=>user._id.toString()===followId) %>
+                                <div class="follower-container--card--wrapper">
+                                    <div class="card--sm">
+                                        <a href="/profile/<%= followId %>">
+                                            <p><%= follow.username %></p>
+                                        </a>
+                                        <div>
+                                            <form action="/followers/<%= follow.id %>/accept-request?_method=PUT" method="POST">
+                                                <button type="submit">accept-request</button>
+                                            </form>
+                                            <form action="/followers/<%= currentUser.id %>/cancle-request/<%= follow.id %>?_method=PUT" method="POST">
+                                                <button type="submit">reject-request</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="m-2">
+
+        <div class="follower-container--margin">
+            <div class="follower-container--title">
+                <p>follower</p>
+            </div>
+
+            <div class="follower-container">
+                <div>
+                    <% if (user_s) { %>
+                        <p class="text-center">팔로워 목록</p>
+                        <div class="card--container">
+                            <% user_s.forEach((user)=>{ %>
+                                <% if (
+                                    !(user._id.equals(currentUser._id))
+                                ) { %>
+                                    
+                                    <div class="card">
+                                            <p class="f-sm m-0">사용자 이름&nbsp;<span>"&nbsp;</span></p>
+                                            <a href="/profile/<%= user._id %>" class="link-text">
+                                                <span class="f-nm"><%= user.username %></span>
+                                            </a>
+        
+                                            
+                                            <% if (user.followRequest.find(followId=>followId===currentUser._id.toString())) { %>
+                                                <form action="/followers/<%= user._id %>/cancle-request/<%= currentUser._id %>?_method=PUT" method="POST">
+                                                    <button type="submit">cancle-request</button>
+                                                </form>
+                                            <% }
+                                            
+                                            %>
+                                            
+                                            <form action="/followers/<%= user._id %>/send-follow-request?_method=PUT" method="POST">
+                                                <button type="submit" class="follower-container--btn-sm">send-request</button>
+                                            </form>
+                                        </div>
+                                 
+                                <% } %>
+            
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            
+        </div>
+
+        <hr class="m-2">
+
+        <div class="follower-container--margin">
+            <div class="follower-container--title">
+                <p>follow now</p>
+            </div>
+            <div>
+                <% if (currentUser.followers.length===0) { %>
+                 <div class="follower-container--currentstatus"><p class="text-center">no follow</p></div>
+                
+                 <% } else { %>
+                    follow list
+
+                    <% currentUser.followers.forEach((followId)=>{ %>
+                        <% const follow=user_s.find(user=>user._id.toString()===followId) %>
+                        <div>
+                            <div class="follower-container--currentstatus">
+                             follow list
+                            </div>
+                            <div>
+                            <a href="/profile/<%= followId %>">
+                                
+                                <p><%= follow.username %></p>
+                            </a>
+                            <form action="/followers/<%= followId %>/remove-follow?_method=PUT" method="POST">
+                                <button type="submit">remove-follow</button>
+                            </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+<%- include('../partials/footer') %>

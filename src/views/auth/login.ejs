@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<section class="container-con">
+    <h1 class="login-title">안녕하세요&nbsp;<br/>
+        <div>
+            <div class="login-title"><span class="blend-effect-1">express</span>로 구현한 웹 어플리케이션입니다</div>
+            
+        </div>
+    </h1>
+    <p class="login-title"></p>
+    <form action="/auth/login" method="post" class="login-cont--wrapper">
+        <p class="login-subtitle mb-2">로그인이 필요합니다</p>
+        <div class="login-input--wrapper">
+            <label for="email" class="input--text">이메일</label>
+            <input id="email" name="email" type="text" class="input--box f-nm" placeholder="이메일을 입력하세요" required />
+        </div>
+        <div class="login-input--wrapper">
+            <label for="password" class="input--text">Password</label>
+            <input id="password" name="password" type="password" class="input--box f-nm" placeholder="패스워드를 입력하세요" required />
+        </div>
+        <button type="submit" class="login-submit--btn">로그인하기</button>
+        <p class="flex-wrapper flex-wrapper--login f-sm m-5">아이디가 없으신가요?&nbsp;&nbsp;<a href="/signup">회원가입</a></p>
+    </form>
+    <br />
+    <div>
+        <div class="flex-wrapper flex-wrapper--info">
+            <span class="">소셜로그인</span>
+            <div class="btn-icon--info--tooltip">
+                <img src="/images/icon-info.png" alt="icon-info" class="btn-icon btn-icon--info">
+                <span class="tooltiptext f-sm">서비스 준비 중 입니다</span>
+            </div>
+        </div>
+        <div class="btn-icon--info--tooltip">
+        </div>
+        <div class="flex-wrapper flex-wrapper--login">
+            <a href="/auth/google" role="button" class="a-btn google-auth">
+                <span class="_hidden">Sign in with kakao</span>
+            </a>
+            <br />
+            <a href="/auth/kakao" role="button" class="a-btn kakao-auth">
+                <span class="_hidden">Sign in with Kakao</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

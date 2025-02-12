@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<div class="width-adjust">
+    <div class="height-adjust text-center">
+        <div class="f-md">
+            <p>edit comment</p>
+        </div>
+        <div class="post-edit">
+            <hr>
+            <form action="/posts/<%= post._id %>/comments/<%= comments._id %>?_method=PUT" method="POST">
+                <div class="post-edit--wrapper">
+                    <textarea name="text" id="desc" class="post-edit--textarea f-sm"><%= comments.text %></textarea>
+                </div>
+                <button type="submit"  class="post-edit--btn">edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

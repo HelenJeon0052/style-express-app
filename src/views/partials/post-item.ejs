@@ -1,0 +1,116 @@
+<div class="post--list--wrapper">
+    <p class=""><%= post.author.username%></p>
+    <hr>
+    <div class="">
+        <div class="">
+            <div class="">
+                <div class="flex-wrapper list-layout">
+                    <a href="/profile/<%= post.author.id %>" class="author--title f-sm">
+                        post by&nbsp;&nbsp;<%= post.author.username %>
+                    </a>
+                    <div class="flex-wrapper">
+                        <span class="date--text f-ex-sm">
+                            <%= post.createdAt.toDateString() %>
+                        </span>
+                        <%if(post.author.id.equals(currentUser._id)){%>
+                        <!--toggle-->
+                        <div class="dropdown">
+                            <button class="no-outline btn-secondary btn-icon btn-icon--bin" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/images/edit_square.png" class="toggle-btn icon-size">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-center" href="/posts/<%= post._id %>/edit">Edit</a></li>
+                                <li><a class="dropdown-item text-center" href="/posts/<%= post._id %>/delete">Delete</a></li>
+                            </ul>
+                        </div>
+                    <%}%>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="">
+                <p class="post--list--wrapper--desc f-md">
+                    <%= post.description %>
+                </p>
+                <% if (post.image) { %>
+                    <img src="/src/public/images/<%= post.image %>" alt="post-img" class="post-img">
+                <% } %>
+            </div>
+        </div>
+        <hr>
+
+        <div>
+            <div class="flex-wrapper list-layout">
+                <!--#:id, 'post= post._id%>'--><!--below anchor comment block referring to its id-->
+                <a href="#post<%= post._id %>" class="author--title">
+                    comments : <%= post.comments.length %>
+                </a>
+                <div>
+                    <form action="/posts/<%= post._id %>/like?_method=PUT" method="POST">
+                        <% if (post.likes.find(like=>like===currentUser._id.toString())) { %>
+                            <button type="submit" class="btn-icon btn-icon--thumb f-ex-sm">
+                                <span><img src="/images/favorite-on.png" class="icon-favorite"></span>
+                            </button>
+                        <% } else {%>
+                            <button type="submit" class="btn-icon btn-icon--thumb--off f-ex-sm">
+                                <span><img src="/images/favorite-off.png" class="icon-favorite"></span>
+                            </button>
+                        <% } %>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="collapse show comments-wrapper" id="post<%= post._id %>">
+            <% if (post.comments.length > 0) { %>
+                <div class="card-body comment-section">
+                    <% post.comments.forEach((comment) => { %>
+                        <div class="flex-wrapper">
+                            <div class="author-title f-sm">
+                                comment by&nbsp;&nbsp;<%= comment.author.username %>
+                            </div>
+                            <small class="comments-wrapper--subtitle f-sm">
+                                <%= comment.createdAt.toDateString() %>
+                            </small>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mt-2">
+                            <p class="comments-wrapper--text f-sm">
+                                <%= comment.text %>
+                            </p>
+                        </div>
+                        <div class="flex-wrapper mt-1 mb-5">
+                            <% if (comment.author.id.equals(currentUser._id)) { %>
+                                <div class="dropdown">
+                                    <button class="btn-icon btn-secondary-comments" type="button" data-bs-toggle="dropdown">
+                                        <span class="f-ex-sm">edit</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a 
+                                        class="dropdown-item text-center"
+                                        href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                        <form class="dropdown-item text-center"
+                                            action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                            method="POST"
+                                            >
+                                          <button class="delete-btn" type="submit">Delete</button>  
+                                        </form>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="comments-wrapper">
+            <form method="POST" action="/posts/<%= post.id %>/comments">
+                <div class="flex-wrapper">
+                    <input name="text" id="desc" placeholder="comment" class="input-comments f-sm">
+                    <button type="submit" class="btn-primary-comments f-sm">enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

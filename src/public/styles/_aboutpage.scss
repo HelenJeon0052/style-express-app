@@ -1,0 +1,64 @@
+/// @access public
+/// @group aboutpage
+/// @type string
+
+$about-namespace:"about";
+
+.#{$about-namespace} {
+    & {
+       display:flex;
+       gap:1rem;
+    }
+
+
+
+    /*title*/
+    &--title--wrapper {
+        margin:0 auto;
+    }
+
+    &--title {
+        font-size:19rem;
+        font-weight:700;
+    }
+
+    &--desc--subtitle {
+        font-size:2.5rem;
+        font-weight:500;
+        color:base.$primary-grey;
+    }
+
+    /*description*/
+    &--description {
+        margin:5rem 0;
+    }
+    &--description--title {
+        font-size:1.2rem;
+        color:base.$tertiary-grey;
+        margin:1rem 0;
+    }
+
+    &--description--wrapper {
+        margin:2rem 0 1rem 0;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        gap:.7rem;
+        
+        .tag {
+            background-color:#f0fcfa;
+            border:1px solid base.$secondary-green;
+            border-radius:1rem;
+            color:base.$secondary-green;
+            font-size:1rem;
+            padding:1rem;
+            font-weight:500;
+
+            &:hover {
+                box-shadow:0 2px 2px 2px rgba(235,235,235,.5);
+            }
+        }
+    }
+
+}
